@@ -1,0 +1,27 @@
+# Виртуальное окружение
+.venv/
+venv/
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Секреты и настройки окружения
+.env
+
+# Настройки редакторов
+.vscode/
+.idea/
+
+# Тесты и покрытие
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Сборка
+dist/
+build/
+*.egg-info/
+
+# Системный мусор
+.DS_Store
