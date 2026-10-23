@@ -14,7 +14,7 @@ rub = Money(10000, "RUB")
 usd2 = Money(123, "USD")
 
 print(usd)
-print(usd == rub)
+print(usd.currency == rub.currency)
 if usd.currency == usd2.currency:
     print(usd + usd2)
 else:
