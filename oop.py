@@ -10,6 +10,8 @@ class Money:
         if self.currency != other.currency:
             raise ValueError(f"Нельязя складывать {self.currency} и {other.currency}")
         return Money(self.amount + other.amount, self.currency)
+
+    
         
 usd = Money(100, "USD")
 rub = Money(10000, "RUB")
@@ -50,3 +52,27 @@ print(p1[0])
 print(p1[1])
 print(p1 + p2)
 print(len(p1))
+
+
+class Temperature:
+    def __init__(self, celsius):
+        self.celsius = celsius
+
+    @property
+    def celsius(self):
+        return self._celsius
+    
+    @property
+    def fahrenheit(self):
+        return self.celsius * 9 / 5 + 32
+
+    @celsius.setter
+    def celsius(self, value):
+        if value < -273.15:
+            raise ValueError("Не может быть ниже -273.15")
+        self._celsius = value
+
+t = Temperature(100)
+print(t.fahrenheit)
+t.celsius = 0
+print(t.fahrenheit)
