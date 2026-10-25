@@ -11,6 +11,10 @@ class Task:
 class TodoError(Exception):
     pass
 
+class FileNotFoundError(Exception):
+    pass
+
+
 class TodoList:
     def __init__(self):
         self.tasks = []
@@ -31,6 +35,15 @@ class TodoList:
         text = json.dumps(data, ensure_ascii=False)
         Path(path).write_text(text, encoding="utf-8")
 
+    def load(self, path):
+        try:
+            text = Path(path).read_text(encoding="utf-8")
+        except FileNotFoundError:
+            print("Файл не найден, начинаем с пустого списка")
+            return
+        data = json.loads(text)
+        task = [Task(**d) for d in data]
+        self.tasks = task
 
 # todo = TodoList()
 # todo.add("хлеб")
@@ -39,8 +52,14 @@ class TodoList:
 # print(todo.tasks)
 # print(todo.tasks[1].done)
 
+# todo = TodoList()
+# todo.add("хлеб")
+# todo.complete(0)
+# todo.save("todo.json")
+# print(Path("todo.json").read_text(encoding="utf-8"))
+
 todo = TodoList()
-todo.add("хлеб")
-todo.complete(0)
-todo.save("todo.json")
-print(Path("todo.json").read_text(encoding="utf-8"))
+todo.load("todo.json")
+print(len(todo))
+print(todo.tasks[0])
+print(todo.tasks[0].done)
