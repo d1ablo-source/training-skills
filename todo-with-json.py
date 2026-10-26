@@ -45,6 +45,35 @@ class TodoList:
         task = [Task(**d) for d in data]
         self.tasks = task
 
+
+todo = TodoList()
+todo.load("todo.json")
+
+while True:
+    line = input("> ")
+    parts = line.split(maxsplit=1)
+    command = parts[0]
+
+    try:
+        if command == "quit":
+            break
+        elif command == "add":
+            todo.add(parts[1])
+        elif command == "done":
+            todo.complete(int(parts[1]))
+        elif command == "list":
+                for i, task in enumerate(todo.tasks):
+                    print(i, task.title, task.done)
+    except TodoError as e:
+        print(f"Ошибка: {e}")
+    except (ValueError, IndexError):
+        print("Неверная команда")
+    if command == "list":
+        for i, task in enumerate(todo.tasks):
+            print(i, task.title, task.done)
+
+todo.save("todo.json")
+
 # todo = TodoList()
 # todo.add("хлеб")
 # todo.add("молоко")
