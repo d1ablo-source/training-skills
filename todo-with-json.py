@@ -68,9 +68,6 @@ while True:
         print(f"Ошибка: {e}")
     except (ValueError, IndexError):
         print("Неверная команда")
-    if command == "list":
-        for i, task in enumerate(todo.tasks):
-            print(i, task.title, task.done)
 
 todo.save("todo.json")
 
@@ -87,8 +84,8 @@ todo.save("todo.json")
 # todo.save("todo.json")
 # print(Path("todo.json").read_text(encoding="utf-8"))
 
-todo = TodoList()
-todo.load("todo.json")
-print(len(todo))
-print(todo.tasks[0])
-print(todo.tasks[0].done)
+# todo = TodoList()
+# todo.load("todo.json")
+# print(len(todo))
+# print(todo.tasks[0])
+# print(todo.tasks[0].done)
